@@ -16,7 +16,7 @@
         surname: "{{ surname }}"
         sam_account_name: "{{ firstname[0] }}{{ surname }}"
         company: BobCo
-        password: temppassword1234
+        password: &Qw2|E[-
         state: present
         groups:
           add:
