@@ -6,8 +6,7 @@
   tasks:
     - name: Setting host facts using complex arguments
       ansible.builtin.set_fact:
-        #temp_password: "{{ lookup('community.general.random_string', min_lower=1, min_upper=1, min_special=1, min_numeric=1) }}"
-        temp_password: '&Qw2|E[-' # Example result: ['&Qw2|E[-']
+        temp_password: "{{ lookup('community.general.random_string', min_lower=1, min_upper=1, min_special=1, min_numeric=1) }}"
 
     - name: Create new user
       microsoft.ad.user:
@@ -16,7 +15,7 @@
         surname: "{{ surname }}"
         sam_account_name: "{{ firstname[0] }}{{ surname }}"
         company: BobCo
-        password: &Qw2|E[-
+        password: "{{ temp_password }}"
         state: present
         groups:
           add:
