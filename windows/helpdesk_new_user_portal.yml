@@ -17,10 +17,6 @@
         company: BobCo
         password: "{{ temp_password }}"
         state: present
-        groups:
-          add:
-            - "GroupA"
-            - "GroupB"
         street: "{{ street }}"
         city: "{{ city }}"
         state_province: IN
@@ -30,6 +26,19 @@
           set:
             telephoneNumber: "{{ telephone_number }}"
       register: new_user
+
+    - name: Set Group for User {{ firstname }} {{ surname }}
+      microsoft.ad.user:
+        name: "{{ firstname }} {{ surname }}"
+        firstname: "{{ firstname }}"
+        surname: "{{ surname }}"
+        sam_account_name: "{{ firstname[0] }}{{ surname }}"
+        company: BobCo
+        state: present
+        groups:
+          add:
+            - "GroupA"
+            - "GroupB"
 
     - name: Display User
       ansible.builtin.debug:
