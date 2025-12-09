@@ -1,0 +1,16 @@
+---
+- name: Unlock Account
+  hosts: "{{ _hosts | default('os_windows') }}"
+  gather_facts: false
+
+  tasks:
+
+    - name: Unlock Account for User {{ firstname }} {{ surname }}
+      microsoft.ad.user:
+        name: "{{ firstname }} {{ surname }}"
+        firstname: "{{ firstname }}"
+        surname: "{{ surname }}"
+        sam_account_name: "{{ firstname[0] }}{{ surname }}"
+        company: BobCo
+        state: present
+        account_locked: false
