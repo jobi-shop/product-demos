@@ -9,6 +9,7 @@
       ansible.builtin.service:
         name: httpd
         state: stopped
+      ignore_errors: true
   
     - name: Ensure the httpd package is removed
       ansible.builtin.package:
