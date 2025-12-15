@@ -1,21 +1,21 @@
 ---
-- name: Install and start apache
+- name: Remove and stop apache
   hosts: web
   become: true
   
   tasks:
 
-    - name: Start the httpd service if needed
+    - name: Stop the httpd service if needed
       ansible.builtin.service:
         name: httpd
         state: stopped
   
-    - name: Ensure the httpd package is installed
+    - name: Ensure the httpd package is removed
       ansible.builtin.package:
         name: httpd
         state: absent
 
-    - name: Create the index.html file
+    - name: Ensure the index.html file is absent
       ansible.builtin.file:
         path: /var/www/html/index.html
         state: absent
